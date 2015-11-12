@@ -1,3 +1,5 @@
+
+/*
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -5,3 +7,5 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+
+*/

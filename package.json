@@ -1,0 +1,25 @@
+{
+  "name": "villagemaps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdmiranda/villageMaps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdmiranda/villageMaps/issues"
+  },
+  "homepage": "https://github.com/jdmiranda/villageMaps#readme",
+  "devDependencies": {
+    "browser-sync": "^2.5.3",
+    "gulp": "^3.9.0",
+    "gulp-watch": "^4.3.5",
+    "run-sequence": "^1.0.2"
+  }
+}

@@ -1,5 +1,27 @@
-
-
+ L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
+var map = L.mapbox.map('map', 'mapbox.pencil')
+    .setView([35.9292, -86.8575], 9);
+    
+    var featureLayer = L.mapbox.featureLayer({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                'marker-color': '#548cba',
+                'marker-size': 'large',
+                'marker-symbol': 'religious-christian'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [ -86.8594, 35.9318]
+            }
+        }]
+    })
+  .bindPopup('Journey Church')
+    .addTo(map);
+    
+var title = 'village';
+var markers = new L.MarkerClusterGroup();
 var groups;
 var groupTypes;
 var filterGroups = [];
@@ -9,7 +31,6 @@ var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', fun
 {
     
     var groups = data.groups.group;
-    console.log(data.groups.group.length);
     groups.forEach(function (entry) {
         if (entry.status != "Active") {
             return;
@@ -26,28 +47,28 @@ var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', fun
                 if (status == google.maps.GeocoderStatus.OK) {
                     entry.lat = results[0].geometry.location.lat();
                     entry.lng = results[0].geometry.location.lng();
-      var featureLayer = L.mapbox.featureLayer({
-        type: 'FeatureCollection',
-        features: [{
-            type: 'Feature',
-            properties: {
-                'marker-color': '#548cba',
-                'marker-size': 'large',
-                'marker-symbol': 'religious-christian'
-            },
-            geometry: {
-                type: 'Point',
-                coordinates: [ entry.lng, entry.lng]
-            }
-        }]
-    })
-  .bindPopup('data about group here')
-    .addTo(map); 
+                    filterGroups.push(entry);
+                    addMarker(entry);
                 }
             });
-
-            filterGroups.push(entry);
-      
+   
         }
     })
 });
+
+//Here's what i'm trying to accomplish  https://www.mapbox.com/mapbox.js/example/v1.0.0/listing-marker-clusters/
+
+function addMarker(m){
+                        
+      L.marker([m.lat, m.lng], {
+    icon: L.mapbox.marker.icon({
+        'marker-size': 'large',
+        'marker-symbol': 'building',
+        'marker-color': '#548cba'
+    })
+}).addTo(map);
+
+}
+
+
+

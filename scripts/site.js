@@ -1,3 +1,5 @@
+
+
 var groups;
 var groupTypes;
 var filterGroups = [];
@@ -7,7 +9,7 @@ var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', fun
 {
     
     var groups = data.groups.group;
-    console.log(data.length);
+    console.log(data.groups.group.length);
     groups.forEach(function (entry) {
         if (entry.status != "Active") {
             return;
@@ -103,10 +105,14 @@ var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', fun
 // document.getElementById('file-input')
 //     .addEventListener('change', j, false);
     
-    L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
+//     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
+// var map = L.mapbox.map('map', 'mapbox.pencil')
+//     .setView([35.9292, -86.8575], 9);
+
+
+L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
 var map = L.mapbox.map('map', 'mapbox.pencil')
     .setView([35.9292, -86.8575], 9);
-
 
 
 var featureLayer = L.mapbox.featureLayer({

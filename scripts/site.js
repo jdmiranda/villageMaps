@@ -3,12 +3,11 @@ var groupTypes;
 var filterGroups = [];
 var geocoder = new google.maps.Geocoder();
 var url = 'http://localhost:8080/json/groups.json'
-var d;
 var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', function(data)
 {
-    d = data;
-    var groups = d.responseJSON.groups.group;
-    console.log(d.length);
+    
+    var groups = data.responseJSON.groups.group;
+    console.log(data.length);
     groups.forEach(function (entry) {
         if (entry.status != "Active") {
             return;

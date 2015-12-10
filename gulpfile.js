@@ -22,6 +22,6 @@
 
     gulp.task('watch', function() {
         // Scripts
-        watch(['./**/*.js', './**/*.html'], reload);
+        watch(['./**/*.js', './**/*.html', './**/*.css'], reload);
     });
 })();

@@ -17,9 +17,16 @@ var map = L.mapbox.map('map', 'mapbox.pencil')
             }
         }]
     })
+     .on('mouseover', function(e) {
+    e.layer.openPopup();
+     })
+     .on('mouseout', function(e) {
+     e.layer.closePopup();
+     })
   .bindPopup('Journey Church')
     .addTo(map);
     
+var villageLayer = [];
 var title = 'village';
 var markers = new L.MarkerClusterGroup();
 var groups;
@@ -59,16 +66,34 @@ var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', fun
 //Here's what i'm trying to accomplish  https://www.mapbox.com/mapbox.js/example/v1.0.0/listing-marker-clusters/
 
 function addMarker(m){
-                        
-      L.marker([m.lat, m.lng], {
-    icon: L.mapbox.marker.icon({
-        'marker-size': 'large',
-        'marker-symbol': 'building',
-        'marker-color': '#548cba'
+      var content = '<h2>'+ m.name + '<\/h2>' +
+        '<p>Address: ' + m.meeting_address + '<br \/>' +
+        'Time: ' + m.meeting_time + '<br\/>' +
+        'Day: ' + m.meeting_day + '<br\/>' + 
+        'Frequency: ' + m.meeting_frequency +
+        '<\/p>' ;
+    
+              L.mapbox.featureLayer({
+        type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                'marker-color': '#548cba',
+                'marker-size': 'medium',
+                'marker-symbol': 'building'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [ m.lng, m.lat]
+            }
+        }]
     })
-}).addTo(map);
-
+    .on('mouseover', function(e) {
+    e.layer.openPopup();
+     })
+     .on('mouseout', function(e) {
+     e.layer.closePopup();
+     })
+    .bindPopup(content)
+    .addTo(map);          
 }
-
-
-

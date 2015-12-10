@@ -63,6 +63,10 @@ var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', fun
     })
 });
 
+function infoButtonClicked(){
+    alert("info button clicked");
+}
+
 //Here's what i'm trying to accomplish  https://www.mapbox.com/mapbox.js/example/v1.0.0/listing-marker-clusters/
 
 function addMarker(m){
@@ -70,7 +74,9 @@ function addMarker(m){
         '<p>Address: ' + m.meeting_address + '<br \/>' +
         'Time: ' + m.meeting_time + '<br\/>' +
         'Day: ' + m.meeting_day + '<br\/>' + 
-        'Frequency: ' + m.meeting_frequency +
+        'Frequency: ' + m.meeting_frequency + '<br\/>' +
+        '<br\/>'+
+        '<button id="get-info" onclick="infoButtonClicked();">Get Info</button>' +
         '<\/p>' ;
     
               L.mapbox.featureLayer({
@@ -91,9 +97,9 @@ function addMarker(m){
     .on('mouseover', function(e) {
     e.layer.openPopup();
      })
-     .on('mouseout', function(e) {
-     e.layer.closePopup();
-     })
+    //  .on('mouseout', function(e) {
+    //  e.layer.closePopup();
+    //  })
     .bindPopup(content)
     .addTo(map);          
 }

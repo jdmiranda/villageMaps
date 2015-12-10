@@ -6,7 +6,7 @@ var url = 'http://localhost:8080/json/groups.json'
 var json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', function(data)
 {
     
-    var groups = data.responseJSON.groups.group;
+    var groups = data.groups.group;
     console.log(data.length);
     groups.forEach(function (entry) {
         if (entry.status != "Active") {

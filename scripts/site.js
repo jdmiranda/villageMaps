@@ -2,7 +2,8 @@
     "use strict";
     
     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
-    var map = L.mapbox.map('map', 'mapbox.pencil').setView([35.9292, -86.8575], 9),
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([35.9292, -86.8575], 9).addControl(L.mapbox.geocoderControl('mapbox.places', {
+        autocomplete: true })),
         json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', processJsonGroups),
         url = 'http://localhost:8080/json/groups.json',
         title = 'village',
@@ -67,7 +68,6 @@
         map.addLayer(markers);
     }
 
-    //Here's what i'm trying to accomplish  https://www.mapbox.com/mapbox.js/example/v1.0.0/listing-marker-clusters/
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +
             '<p>Address: ' + m.meeting_address + '<br \/>' +
@@ -90,10 +90,11 @@
     }
 }());
 
-function filter() {
-    var inputText = $('#filter_text').val();
-    alert("Filter text: " + inputText);
-}
+// function filter() {
+//     var inputText = $('#filter_text').val();
+//     alert("Filter text: " + inputText);
+
+// }
 
 function infoButtonClicked() {
     alert("info button clicked");

@@ -11,7 +11,7 @@ body {
 }
 
 #filter {
-    position: fixed;
+  position: fixed;
     z-index: 100;
     top: 10px;
     left: 45px;

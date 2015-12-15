@@ -4,7 +4,7 @@
     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
     var map = L.mapbox.map('map', 'mapbox.streets').setView([35.9292, -86.8575], 9).addControl(L.mapbox.geocoderControl('mapbox.places', {
         autocomplete: true })),
-       json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json'),
+       json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', processJsonGroups),
         url = 'http://localhost:8080/json/groups.json',
         title = 'village',
         groups = null,
@@ -37,10 +37,6 @@
         .on('mouseout', function (e) {
             e.layer.closePopup();
         })
-         .on('click', function ()
-         {
-             processJsonGroups(json.responseJSON)  
-         })
         .bindPopup('Journey Church')
         .addTo(map);
 

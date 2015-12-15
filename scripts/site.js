@@ -37,6 +37,7 @@
         .on('mouseout', function (e) {
             e.layer.closePopup();
         })
+        // .onClick($.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', processJsonGroups))
         .bindPopup('Journey Church')
         .addTo(map);
 

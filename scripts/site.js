@@ -39,8 +39,7 @@
         })
          .on('click', function ()
          {
-             alert("ahhh")
-          // processJsonGroups(json)  
+             processJsonGroups(json.responseJSON)  
          })
         .bindPopup('Journey Church')
         .addTo(map);

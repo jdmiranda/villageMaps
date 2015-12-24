@@ -53,7 +53,7 @@
             if (entry.meeting_address == "") {
                 return;
             }
-            if (entry.name.includes("Village")) {
+            if (entry.name.includes("Neighborhood")) {
                 var address = entry.meeting_address + "," + entry.meeting_city + "," + entry.meeting_postcode;
 
                 geocoder.geocode({'address': address}, function (results, status) {
@@ -71,13 +71,17 @@
 
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +
-            '<p>Address: ' + m.meeting_address + '<br \/>' +
-            'Time: ' + m.meeting_time + '<br\/>' +
-            'Day: ' + m.meeting_day + '<br\/>' +
-            'Frequency: ' + m.meeting_frequency + '<br\/>' +
-            '<br\/>' +
-            '<button id="get-info" onclick="infoButtonClicked();">Get Info</button>' +
-            '<\/p>';
+            // '<p>Address: ' + m.meeting_address + '<br \/>' +
+            // 'Time: ' + m.meeting_time + '<br\/>' +
+            // 'Day: ' + m.meeting_day + '<br\/>' +
+            // 'Frequency: ' + m.meeting_frequency + '<br\/>' +
+            // '<br\/>' +
+            '<p>' +
+            '<form action="https://journeyfranklin.elvanto.net/form/3b3ae3bf-710e-11e5-af42-0673d9c9b5d6">' +
+             '<input type="submit" value="Connect"></form>' + '<\/p>';
+
+            // '<button id="get-info" onclick="location.href="https://journeyfranklin.elvanto.net/form/3b3ae3bf-710e-11e5-af42-0673d9c9b5d6";">Get Info</button>' +
+            // '<\/p>';
 
         var marker = L.marker(
             new L.LatLng(m.lat, m.lng),

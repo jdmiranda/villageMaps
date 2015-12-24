@@ -71,18 +71,10 @@
 
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +
-            // '<p>Address: ' + m.meeting_address + '<br \/>' +
-            // 'Time: ' + m.meeting_time + '<br\/>' +
-            // 'Day: ' + m.meeting_day + '<br\/>' +
-            // 'Frequency: ' + m.meeting_frequency + '<br\/>' +
-            // '<br\/>' +
             '<p>' +
             '<form action="https://journeyfranklin.elvanto.net/form/3b3ae3bf-710e-11e5-af42-0673d9c9b5d6">' +
              '<input type="submit" value="Connect"></form>' + '<\/p>';
-
-            // '<button id="get-info" onclick="location.href="https://journeyfranklin.elvanto.net/form/3b3ae3bf-710e-11e5-af42-0673d9c9b5d6";">Get Info</button>' +
-            // '<\/p>';
-
+             
         var marker = L.marker(
             new L.LatLng(m.lat, m.lng),
             {
@@ -93,13 +85,36 @@
         marker.bindPopup(content);
         markers.addLayer(marker);
     }
-}());
+ }());
 
 // function filter() {
 //     var inputText = $('#filter_text').val();
-//     alert("Filter text: " + inputText);
-
-// }
+//       alert("i was called");
+//    var m;
+//       geocoder.geocode({'address': inputText}, function (results, status) {
+//                     if (status == google.maps.GeocoderStatus.OK) {
+//                         m.lat = results[0].geometry.location.lat();
+//                         m.lng = results[0].geometry.location.lng();
+//                     }});
+                    
+//                     L.mapbox
+//         .featureLayer({
+//             type: 'FeatureCollection',
+//             features: [{
+//                 type: 'Feature',
+//                 properties: {
+//                     'marker-color': '#548cba',
+//                     'marker-size': 'large',
+//                     'marker-symbol': 'religious-christian'
+//                 },
+//                 geometry: {
+//                     type: 'Point',
+//                     coordinates: [m.lat, m.lng]
+//                 }
+//             }]
+//         })
+//         .addTo(map);
+//}
 
 function infoButtonClicked() {
     alert("info button clicked");

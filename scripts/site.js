@@ -69,9 +69,11 @@
         map.addLayer(markers);
     }
 
+function submit(){};
+
     function myFunction(){
-        alert("info button clicked");
-    }
+        alert('test');
+    };
 
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +

@@ -73,7 +73,7 @@
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +
             '<p> Please click the CONNECT button below to receive more information about this specific Village.' +
-            '<button onclick="myFunction()">Connect</button>' + '<\/p>'
+            '<button onclick="getUserData()">Connect</button>' + '<\/p>'
             ;
 
 
@@ -126,7 +126,7 @@
 var village;
 
 
-function myFunction(){
+function getUserData(){
     var name = "Name";
     var address = "Address";
     var email = "Email";
@@ -242,7 +242,7 @@ function myFunction(){
     function setVillage(m)
 {
     village = m;
-    myFunction();
+    getUserData();
 };
     doIt();
 }

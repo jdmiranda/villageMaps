@@ -3,7 +3,7 @@
 
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
-    var map = L.mapbox.map('map', 'mapbox.streets').setView([35.9292, -86.8575], 9).addControl(L.mapbox.geocoderControl('mapbox.places', {
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([35.9292, -86.8575], 13).addControl(L.mapbox.geocoderControl('mapbox.places', {
         autocomplete: true })),
        json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', processJsonGroups),
         url = 'http://localhost:8080/json/groups.json',
@@ -69,12 +69,16 @@
         map.addLayer(markers);
     }
 
+    function myFunction(){
+        alert("info button clicked");
+    }
+
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +
-            '<p>' +
-            '<form action="https://journeyfranklin.elvanto.net/form/3b3ae3bf-710e-11e5-af42-0673d9c9b5d6">' +
-             '<input type="submit" value="Connect"></form>' + '<\/p>';
-             
+            '<p> Please click the CONNECT button below to receive more information about this specific Village.' +
+            '<button onclick="myFunction()">Conncet</button>' + '<\/p>';
+
+
         var marker = L.marker(
             new L.LatLng(m.lat, m.lng),
             {
@@ -85,6 +89,9 @@
         marker.bindPopup(content);
         markers.addLayer(marker);
     }
+
+
+
  }());
 
 // function filter() {
@@ -96,7 +103,7 @@
 //                         m.lat = results[0].geometry.location.lat();
 //                         m.lng = results[0].geometry.location.lng();
 //                     }});
-                    
+
 //                     L.mapbox
 //         .featureLayer({
 //             type: 'FeatureCollection',
@@ -116,6 +123,7 @@
 //         .addTo(map);
 //}
 
-function infoButtonClicked() {
+//}
+function myFunction(){
     alert("info button clicked");
 }

@@ -69,12 +69,6 @@
         map.addLayer(markers);
     }
 
-function submit(){};
-
-    function myFunction(){
-        alert('test');
-    };
-
     function addMarker(m) {
         var content = '<h2>' + m.name + '<\/h2>' +
             '<p> Please click the CONNECT button below to receive more information about this specific Village.' +
@@ -127,5 +121,17 @@ function submit(){};
 
 //}
 function myFunction(){
-    alert("info button clicked");
+    sweetAlert({   title: "An input!",
+      text: "Write something interesting:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "Write something" },
+      function(inputValue){
+        if (inputValue === false) return false;
+        if (inputValue === "") {
+          sweetAlert.showInputError("You need to write something!");
+          return false   }
+    sweetAlert("Nice!", "You wrote: " + inputValue, "success"); });
 }

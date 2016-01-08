@@ -1,9 +1,8 @@
 (function () {
     "use strict";
 
-
     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
-    var map = L.mapbox.map('map', 'mapbox.streets').setView([35.9292, -86.8575], 13).addControl(L.mapbox.geocoderControl('mapbox.places', {
+    var map = L.mapbox.map('map', 'mapbox.streets').setView([35.9145, -86.8475], 13).addControl(L.mapbox.geocoderControl('mapbox.places', {
         autocomplete: true })),
        json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', processJsonGroups),
         url = 'http://localhost:8080/json/groups.json',
@@ -14,6 +13,7 @@
         filterGroups = [],
         markers = new L.MarkerClusterGroup(),
         geocoder = new google.maps.Geocoder();
+       
 
     // Add church marker
     L.mapbox
@@ -32,13 +32,9 @@
                 }
             }]
         })
-        .on('mouseover', function (e) {
-            e.layer.openPopup();
+        .on('click', function (e) {
+           swal('Journey Church');
         })
-        .on('mouseout', function (e) {
-            e.layer.closePopup();
-        })
-        .bindPopup('Journey Church')
         .addTo(map);
 
     /////////////////////////////////////////////////////
@@ -71,11 +67,6 @@
     
 
     function addMarker(m) {
-        var content = '<h2>' + m.name + '<\/h2>' +
-            '<p> Please click the CONNECT button below to receive more information about this specific Village.' +
-            '<button onclick="getUserData()">Connect</button>' + '<\/p>'
-            ;
-
 
         var marker = L.marker(
             new L.LatLng(m.lat, m.lng),
@@ -84,8 +75,24 @@
                 title: m.name
             });
 
-        marker.bindPopup(content);
-  
+        marker.on('click', function(e){
+            swal({
+                title: m.name,
+                text:'Please click the Connect button below to receive more information about this specific Village.',
+                showCancelButton: true,
+                    confirmButtonText: "Connect",   
+                    cancelButtonText: "Back to map",   
+                    closeOnConfirm: false,   
+                    closeOnCancel: true
+            },
+                    
+                    function(isConfirm){
+                        if (isConfirm) {
+                            getUserData();
+                        }
+                    }
+            );
+        });
         markers.addLayer(marker);
     }
 
@@ -233,7 +240,7 @@ function getUserData(){
                     },
                     function(isConfirm){   
                         if (isConfirm) {     
-                            swal("Sent!", "We super stoked to get in touch with you.", "success");
+                            swal("Thank You!", "Someone from this Village will reach out in the next few days to tell you more and answer any question you might have. - Village Staff", "success");
                      }
                     });
             }

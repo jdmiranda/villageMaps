@@ -1,3 +1,4 @@
+var village;
 (function () {
     "use strict";
 
@@ -14,7 +15,6 @@
         markers = new L.MarkerClusterGroup(),
         geocoder = new google.maps.Geocoder();
        
-
     // Add church marker
     L.mapbox
         .featureLayer({
@@ -76,6 +76,8 @@
             });
 
         marker.on('click', function(e){
+            village = m;
+            
             swal({
                 title: m.name,
                 text:'Please click the Connect button below to receive more information about this specific Village.',
@@ -99,39 +101,6 @@
 
 
  }());
-
-// function filter() {
-//     var inputText = $('#filter_text').val();
-//       alert("i was called");
-//    var m;
-//       geocoder.geocode({'address': inputText}, function (results, status) {
-//                     if (status == google.maps.GeocoderStatus.OK) {
-//                         m.lat = results[0].geometry.location.lat();
-//                         m.lng = results[0].geometry.location.lng();
-//                     }});
-
-//                     L.mapbox
-//         .featureLayer({
-//             type: 'FeatureCollection',
-//             features: [{
-//                 type: 'Feature',
-//                 properties: {
-//                     'marker-color': '#548cba',
-//                     'marker-size': 'large',
-//                     'marker-symbol': 'religious-christian'
-//                 },
-//                 geometry: {
-//                     type: 'Point',
-//                     coordinates: [m.lat, m.lng]
-//                 }
-//             }]
-//         })
-//         .addTo(map);
-//}
-
-//}
-var village;
-
 
 function getUserData(){
     var name = "Name";
@@ -178,30 +147,9 @@ function getUserData(){
                     swal.showInputError("You need to write your address!");     return false   
                     }     
                     address = inputValue;
-                     getEmail();
-                     });
-            }
-            
-            function getEmail(){
-                               swal({   
-             title: "Grabbing your email so we can get in touch.",   
-             type: 'input',
-             html: true ,
-            showCancelButton: true,   
-            closeOnConfirm: false,   
-            animation: "slide-from-top",   
-            inputPlaceholder: email }, 
-            
-            function(inputValue){   
-                if (inputValue === false) return false;      
-                if (inputValue === "") {     
-                    swal.showInputError("You need to write your email address!");     return false   
-                    }     
-                    email = inputValue;
                      getPhone();
                      });
             }
-            
             function getPhone(){
                                swal({   
              title: "Last thing is your phone so we can give you a ring-a-ding.",   
@@ -225,31 +173,24 @@ function getUserData(){
             function confirmContactInfo(){
                 swal({   
                     title: "Sweet!",   
-                    text: "Here's what we got: </br> " +
-                   // village.name + "</br>" +
-                     name + "</br> " + 
-                    address + "</br>" +
-                    email + "</br>" +
-                    phone + "</br>",   
+                    text: "Click the send email button to open up your email client and take the first step in getting connected." ,   
                     html: true,
                     showCancelButton: true,
-                    confirmButtonText: "Looks good, Connect me!",   
-                    cancelButtonText: "No, I've got cold feet!",   
+                    confirmButtonText: "Send email",   
+                    cancelButtonText: "Back to map",   
                     closeOnConfirm: false,   
                     closeOnCancel: true
                     },
                     function(isConfirm){   
-                        if (isConfirm) {     
+                        if (isConfirm) {    
+                            var subject = village.name;
+                            var body = "My name is " + name + ". Please get me in touch with someone from the " + village.name +  ". My phone is " + phone + " and my address is " + address + ". I look forward to hearing from you.";
+                           sendEmail(subject, body);
                             swal("Thank You!", "Someone from this Village will reach out in the next few days to tell you more and answer any question you might have. - Village Staff", "success");
                      }
                     });
             }
     
     }
-    function setVillage(m)
-{
-    village = m;
-    getUserData();
-};
     doIt();
 }

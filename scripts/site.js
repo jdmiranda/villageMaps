@@ -1,4 +1,8 @@
 var village;
+  function sendEmail(subject, body)
+    {
+      window.open('mailto:jeremy.d.miranda@gmail.com?subject=' + subject + '&body=' + body);
+    }
 (function () {
     "use strict";
 
@@ -104,8 +108,7 @@ var village;
 
 function getUserData(){
     var name = "Name";
-    var address = "Address";
-    var email = "Email";
+    var address = "Adress, City State, Zip";
     var phone = "Phone";
     
     function doIt(){

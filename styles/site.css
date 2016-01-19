@@ -10,12 +10,12 @@ body {
     width: 100%;
 }
 
-/*#filter {
+#filter {
   position: fixed;
     z-index: 100;
     top: 10px;
     left: 45px;
-}*/
+}
 
 #filter input, #filter button {
     background-color: #fff;

@@ -18,7 +18,7 @@ var village;
         filterGroups = [],
         markers = new L.MarkerClusterGroup(),
         geocoder = new google.maps.Geocoder();
-       
+
     // Add church marker
     L.mapbox
         .featureLayer({
@@ -68,7 +68,7 @@ var village;
         });
         map.addLayer(markers);
     }
-    
+
 
     function addMarker(m) {
 
@@ -81,17 +81,17 @@ var village;
 
         marker.on('click', function(e){
             village = m;
-            
+
             swal({
                 title: m.name,
                 text:'Please click the Connect button below to receive more information about this specific Village.',
                 showCancelButton: true,
-                    confirmButtonText: "Connect",   
-                    cancelButtonText: "Back to map",   
-                    closeOnConfirm: false,   
+                    confirmButtonText: "Connect",
+                    cancelButtonText: "Back to map",
+                    closeOnConfirm: false,
                     closeOnCancel: true
             },
-                    
+
                     function(isConfirm){
                         if (isConfirm) {
                             getUserData();
@@ -110,82 +110,82 @@ function getUserData(){
     var name = "Name";
     var address = "Adress, City State, Zip";
     var phone = "Phone";
-    
+
     function doIt(){
-        
-        swal({   
-             title: "Your about to get connected!",   
+
+        swal({
+             title: "Your about to get connected!",
              type: 'input',
              html: true ,
-            showCancelButton: true,   
-            closeOnConfirm: false,   
-            animation: "slide-from-top",   
-            inputPlaceholder: name }, 
-            
-            function(inputValue){   
-                if (inputValue === false) return false;      
-                if (inputValue === "") {     
-                    swal.showInputError("You need to write your name!");     return false   
-                    }  
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: name },
+
+            function(inputValue){
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("You need to write your name!");     return false
+                    }
                     name = inputValue;
                     getAddy();
-            
+
                });
 
-                    
-                      
+
+
         function getAddy(){
-                      swal({   
-             title: "Finding out where you live! To plug you in the right village.",   
+                      swal({
+             title: "Finding out where you live! To plug you in the right village.",
              type: 'input',
              html: true ,
-            showCancelButton: true,   
-            closeOnConfirm: false,   
-            animation: "slide-from-top",   
-            inputPlaceholder: address }, 
-            
-            function(inputValue){   
-                if (inputValue === false) return false;      
-                if (inputValue === "") {     
-                    swal.showInputError("You need to write your address!");     return false   
-                    }     
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: address },
+
+            function(inputValue){
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("You need to write your address!");     return false
+                    }
                     address = inputValue;
                      getPhone();
                      });
             }
             function getPhone(){
-                               swal({   
-             title: "Last thing is your phone so we can give you a ring-a-ding.",   
+                               swal({
+             title: "Last thing is your phone so we can give you a ring-a-ding.",
              type: 'input',
              html: true ,
-            showCancelButton: true,   
-            closeOnConfirm: false,   
-            animation: "slide-from-top",   
-            inputPlaceholder: phone }, 
-            
-            function(inputValue){   
-                if (inputValue === false) return false;      
-                if (inputValue === "") {     
-                    swal.showInputError("You need to write your phone number!");     return false   
-                    }     
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top",
+            inputPlaceholder: phone },
+
+            function(inputValue){
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("You need to write your phone number!");     return false
+                    }
                     phone = inputValue;
                      confirmContactInfo();
                      });
             }
-            
+
             function confirmContactInfo(){
-                swal({   
-                    title: "Sweet!",   
-                    text: "Click the send email button to open up your email client and take the first step in getting connected." ,   
+                swal({
+                    title: "Sweet!",
+                    text: "Click the send email button to open up your email client and take the first step in getting connected." ,
                     html: true,
                     showCancelButton: true,
-                    confirmButtonText: "Send email",   
-                    cancelButtonText: "Back to map",   
-                    closeOnConfirm: false,   
+                    confirmButtonText: "Send email",
+                    cancelButtonText: "Back to map",
+                    closeOnConfirm: false,
                     closeOnCancel: true
                     },
-                    function(isConfirm){   
-                        if (isConfirm) {    
+                    function(isConfirm){
+                        if (isConfirm) {
                             var subject = village.name;
                             var body = "My name is " + name + ". Please get me in touch with someone from the " + village.name +  ". My phone is " + phone + " and my address is " + address + ". I look forward to hearing from you.";
                            sendEmail(subject, body);
@@ -193,7 +193,7 @@ function getUserData(){
                      }
                     });
             }
-    
+
     }
     doIt();
 }

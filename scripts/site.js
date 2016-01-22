@@ -44,30 +44,38 @@ var village;
     /////////////////////////////////////////////////////
 
     function processJsonGroups(data) {
-        var groups = data.groups.group;
-        groups.forEach(function (entry) {
-            if (entry.status != "Active") {
-                return;
-            }
+  var groups = data.groups.group;
+  var i, j, tempAry, chunk = 10;
+  for (i = 0; i < groups.length; i+=chunk) {
+    tempAry = groups.slice(i, i+chunk);
+    // do whatever
+    tempAry.forEach(processEntry);
+    map.addLayer(markers);
+  }
+  function processEntry (entry, idx, ary) {
+    window.setTimeout(function() {
+      if (entry.status != "Active") {
+        return;
+      }
+      if (entry.meeting_address == "") {
+        return;
+      }
+      if (entry.name.includes("Neighborhood")) {
+        var address = entry.meeting_address + "," + entry.meeting_city + "," + entry.meeting_postcode;
+        console.log(address);
 
-            if (entry.meeting_address == "") {
-                return;
-            }
-            if (entry.name.includes("Neighborhood")) {
-                var address = entry.meeting_address + "," + entry.meeting_city + "," + entry.meeting_postcode;
-
-                geocoder.geocode({'address': address}, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        entry.lat = results[0].geometry.location.lat();
-                        entry.lng = results[0].geometry.location.lng();
-                        filterGroups.push(entry);
-                        addMarker(entry);
-                    }
-                });
-            }
+        geocoder.geocode({'address': address}, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            entry.lat = results[0].geometry.location.lat();
+            entry.lng = results[0].geometry.location.lng();
+            filterGroups.push(entry);
+            addMarker(entry);
+          }
         });
-        map.addLayer(markers);
-    }
+      }
+    }, 3000*idx);
+  }
+}
 
 
     function addMarker(m) {

@@ -9,16 +9,15 @@ var village;
     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
     var map = L.mapbox.map('map', 'mapbox.streets').setView([35.914539, -86.847597], 13).addControl(L.mapbox.geocoderControl('mapbox.places', {
         autocomplete: true })),
-       json = $.getJSON('https://s3.amazonaws.com/journeyfranklin/groups.json', processJsonGroups),
-        url = 'http://localhost:8080/json/groups.json',
+       json = $.getJSON('http://villagemapserver.herokuapp.com/neighborhoods'),//, processJsonGroups),
         title = 'village',
         groups = null,
         groupTypes = null,
         villageLayer = [],
         filterGroups = [],
-        markers = new L.MarkerClusterGroup(),
-        geocoder = new google.maps.Geocoder();
-
+        markers = new L.MarkerClusterGroup();
+      // geocoder = new google.maps.Geocoder();
+json.foeach(addMarker);
     // Add church marker
     L.mapbox
         .featureLayer({
@@ -43,39 +42,39 @@ var village;
 
     /////////////////////////////////////////////////////
 
-    function processJsonGroups(data) {
-  var groups = data.groups.group;
-  var i, j, tempAry, chunk = 10;
-  for (i = 0; i < groups.length; i+=chunk) {
-    tempAry = groups.slice(i, i+chunk);
-    // do whatever
-    tempAry.forEach(processEntry);
-    map.addLayer(markers);
-  }
-  function processEntry (entry, idx, ary) {
-    window.setTimeout(function() {
-      if (entry.status != "Active") {
-        return;
-      }
-      if (entry.meeting_address == "") {
-        return;
-      }
-      if (entry.name.includes("Neighborhood")) {
-        var address = entry.meeting_address + "," + entry.meeting_city + "," + entry.meeting_postcode;
-        console.log(address);
+    //function processJsonGroups(data) {
+  // var groups = data.groups.group;
+  // var i, j, tempAry, chunk = 10;
+  // for (i = 0; i < groups.length; i+=chunk) {
+  //   tempAry = groups.slice(i, i+chunk);
+  //   // do whatever
+  //   tempAry.forEach(processEntry);
+  //   map.addLayer(markers);
+  // }
 
-        geocoder.geocode({'address': address}, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            entry.lat = results[0].geometry.location.lat();
-            entry.lng = results[0].geometry.location.lng();
-            filterGroups.push(entry);
-            addMarker(entry);
-          }
-        });
-      }
-    }, 4000*idx);
-  }
-}
+//   function processEntry (entry, idx, ary) {
+//     window.setTimeout(function() {
+//       if (entry.status != "Active") {
+//         return;
+//       }
+//       if (entry.meeting_address == "") {
+//         return;
+//       }
+//       if (entry.name.includes("Neighborhood")) {
+//         var address = entry.meeting_address + "," + entry.meeting_city + "," + entry.meeting_postcode;
+//         console.log(address);
+//
+//         geocoder.geocode({'address': address}, function (results, status) {
+//           if (status == google.maps.GeocoderStatus.OK) {
+//             entry.lat = results[0].geometry.location.lat();
+//             entry.lng = results[0].geometry.location.lng();
+//             filterGroups.push(entry);
+//           }
+//         });
+//       }
+//     }, 4000*idx);
+//   }
+// }
 
 
     function addMarker(m) {

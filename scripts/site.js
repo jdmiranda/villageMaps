@@ -17,8 +17,7 @@ var village;
         filterGroups = [],
         markers = new L.MarkerClusterGroup();
       // geocoder = new google.maps.Geocoder();
-      console.log(json);
-json.repsonseJSON.forEach(addMarker);
+
     // Add church marker
     L.mapbox
         .featureLayer({
@@ -76,9 +75,9 @@ json.repsonseJSON.forEach(addMarker);
 //     }, 4000*idx);
 //   }
 // }
-
-
-    function addMarker(m) {
+console.log(json);
+json.repsonseJSON.forEach(
+    function (m) {
 
         var marker = L.marker(
             new L.LatLng(m.lat, m.lng),
@@ -108,7 +107,7 @@ json.repsonseJSON.forEach(addMarker);
             );
         });
         markers.addLayer(marker);
-    }
+    });
 
 
 

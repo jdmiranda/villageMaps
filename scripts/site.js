@@ -17,7 +17,7 @@ var village;
         //groupTypes = null,
         //villageLayer = [],
         //filterGroups = [],
-        markers = new L.MarkerClusterGroup(),
+        markers = new L.MarkerClusterGroup();
         //geocoder = new google.maps.Geocoder();
 
     // Add church marker

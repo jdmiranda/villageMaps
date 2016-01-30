@@ -44,6 +44,7 @@ var village;
     /////////////////////////////////////////////////////
 
     function processJsonGroups(data) {
+      console.log(data);
   var groups = data.groups.group;
   var i, j, tempAry, chunk = 10;
   for (i = 0; i < groups.length; i+=chunk) {

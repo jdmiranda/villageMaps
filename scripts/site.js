@@ -1,8 +1,5 @@
 var village;
-  function sendEmail(subject, body)
-    {
-      window.open('mailto:jeremy.d.miranda@gmail.com?subject=' + subject + '&body=' + body);
-    }
+
 (function () {
     "use strict";
 
@@ -50,12 +47,6 @@ var village;
        {"_id":"56a9f1215e7cad420da7d1fb","id":"5e80f046-6de6-11e5-af42-0673d9c9b5d6","name":"Brentwood Neighborhood","address":"5104 Ravens Glen,Nashville,37211","lat":36.016377,"lng":-86.73625299999999,"__v":0},
        {"_id":"56a9f1255e7cad420da7d1fc","id":"f9e4239c-6de9-11e5-af42-0673d9c9b5d6","name":"Hickory Hollow Neighborhood","address":"1900 Wild Oaks Ct,Antioch,37013","lat":36.048976,"lng":-86.64353299999999,"__v":0}];
 
-      //  url = 'http://localhost:8080/json/groups.json',
-      //  title = 'village',
-      //   groups = null,
-      //   groupTypes = null,
-      //   villageLayer = [],
-      //   filterGroups = [],
         var markers = new L.MarkerClusterGroup();
         var geocoder = new google.maps.Geocoder();
          processJsonGroups(json);
@@ -158,6 +149,7 @@ var village;
 
 function getUserData(){
     var name = "Name";
+    var email = "you@Email.com";
     var address = "Adress, City State, Zip";
     var phone = "Phone";
 
@@ -178,9 +170,29 @@ function getUserData(){
                     swal.showInputError("You need to write your name!");     return false;
                     }
                     name = inputValue;
-                    getAddy();
+                    getEmail();
 
                });
+
+               function getEmail(){
+                 swal({
+                      title: "Please add your email address.",
+                      type: 'input',
+                      html: true ,
+                     showCancelButton: true,
+                     closeOnConfirm: false,
+                     animation: "slide-from-top",
+                     inputPlaceholder: email },
+
+                     function(inputValue){
+                         if (inputValue === false) return false;
+                         if (inputValue === "") {
+                             swal.showInputError("You need to write your Email!");     return false;
+                             }
+                             email = inputValue;
+                             getAddy();
+                        });
+               };
 
 
 
@@ -238,7 +250,8 @@ function getUserData(){
                         if (isConfirm) {
                             var subject = village.name;
                             var body = "My name is " + name + ". Please get me in touch with someone from the " + village.name +  ". My phone is " + phone + " and my address is " + address + ". I look forward to hearing from you.";
-                           sendEmail(subject, body);
+                           $.post('http://villagemapserver.herokuapp.com/email', {sender: email, subjectVillageName: subject, body: body });
+                          // $.post('localhost:3000/email', {sender: email, subjectVillageName: subject, body: body });
                             swal("Thank You!", "Someone from this Village will reach out in the next few days to tell you more and answer any question you might have. - Village Staff", "success");
                      }
                     });

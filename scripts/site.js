@@ -9,15 +9,15 @@ var village;
     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1icmlhc2hpciIsImEiOiJjaWZ0MXAybDcwZ3I2dHRseWI3NjAyMTZ2In0.eD7uxIRAY9ifI6ecnkiu-g';
     var map = L.mapbox.map('map', 'mapbox.streets').setView([35.914539, -86.847597], 13).addControl(L.mapbox.geocoderControl('mapbox.places', {
         autocomplete: true })),
-       json = $.getJSON('/data/data.js'),//, processJsonGroups),
-        url = 'http://localhost:8080/json/groups.json',
-        title = 'village',
-        groups = null,
-        groupTypes = null,
-        villageLayer = [],
-        filterGroups = [],
+       json = $.getJSON('/data/data.js').done(processJsonGroups),//, processJsonGroups),
+      //  url = 'http://localhost:8080/json/groups.json',
+      //  title = 'village',
+        //groups = null,
+        //groupTypes = null,
+        //villageLayer = [],
+        //filterGroups = [],
         markers = new L.MarkerClusterGroup(),
-        geocoder = new google.maps.Geocoder();
+        //geocoder = new google.maps.Geocoder();
 
     // Add church marker
     L.mapbox
@@ -50,7 +50,7 @@ var village;
   for (i = 0; i < groups.length; i+=chunk) {
     tempAry = groups.slice(i, i+chunk);
     // do whatever
-    data.forEach(processEntry);
+    data.forEach(addMarker);
     map.addLayer(markers);
   }
   function processEntry (entry, idx, ary) {

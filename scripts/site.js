@@ -250,7 +250,7 @@ function getUserData(){
                         if (isConfirm) {
                             var subject = village.name;
                             var body = "My name is " + name + ". Please get me in touch with someone from the " + village.name +  ". My phone is " + phone + " and my address is " + address + ". I look forward to hearing from you.";
-                           $.post('http://villagemapserver.herokuapp.com/email', {sender: email, subjectVillageName: subject, body: body });
+                           $.post('http://villagemapserver.herokuapp.com/email', {from: email, subjectVillageName: subject, body: body });
                           // $.post('localhost:3000/email', {sender: email, subjectVillageName: subject, body: body });
                             swal("Thank You!", "Someone from this Village will reach out in the next few days to tell you more and answer any question you might have. - Village Staff", "success");
                      }

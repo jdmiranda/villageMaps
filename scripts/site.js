@@ -71,7 +71,7 @@ var village;
         .on('click', function (e) {
            swal({
             title: 'Journey Church',
-            text: 'Sunday 5pm. 4910 Main St, Spring Hill, TN 37174.' ,
+            text: 'Sunday 5pm. 828 Murfreesboro Rd, Franklin, TN 37064.' ,
             confirmButtonText: 'Back to map',
             closeOnConfirm: true
            });
@@ -206,7 +206,7 @@ function getUserData(){
                         console.log("submit");
                           var body = "My name is " + name + ". Please get me in touch with someone from the " + village.name +  ". My phone is " + phone + " and my address is " + address + ". I look forward to hearing from you.";
                          $.post('http://villagemapserver.herokuapp.com/email', {sender: email, subject: village.name, body: body });
-                          swal("Thank You!", "Someone from this Village will reach out in the next few days to tell you more and answer any question you might have. - Village Staff", "success");
+                          swal("Thank You!", "Someone from this Village will reach out in the next few days to tell you more and answer any questions you might have. - Village Staff", "success");
                  })
             };
     }

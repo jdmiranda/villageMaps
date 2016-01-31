@@ -38,7 +38,7 @@ var village;
        {"_id":"56a9f1195e7cad420da7d1f2","id":"4486c042-6ded-11e5-af42-0673d9c9b5d6","name":"West Nashville Neighborhood","address":"3323 Acklen Ave,Nashville,37212","lat":36.13682,"lng":-86.817376,"__v":0},
        {"_id":"56a9f1195e7cad420da7d1f3","id":"cd562691-6d23-11e5-af42-0673d9c9b5d6","name":"Spring Hill North Neighborhood","address":"1614 Zurich Dr.,Spring Hill,37174","lat":35.763362,"lng":-86.899194,"__v":0},
        {"_id":"56a9f1195e7cad420da7d1f4","id":"bfe91c16-6ddc-11e5-af42-0673d9c9b5d6","name":"North Columbia Ave Neighborhood","address":"304 Battle Ave,Franklin,37064","lat":35.912747,"lng":-86.88080699999999,"__v":0},
-       {"_id":"56a9f11d5e7cad420da7d1f5","id":"68cddb8c-6de1-11e5-af42-0673d9c9b5d6","name":"Williamson Square Neighborhood","address":"1705 Tensaw Circle,Franklin,37067","lat":35.9178335,"lng":-86.7987251,"__v":0},
+       {"_id":"56a9f11d5e7cad420da7d1f5","id":"68cddb8c-6de1-11e5-af42-0673d9c9b5d6","name":"Williamson Square Neighborhood","address":"114 Churchill Place, Franklin, TN, 37064","lat":35.921475,"lng":-86.839687,"__v":0},
        {"_id":"56a9f11d5e7cad420da7d1f7","id":"9d82ffdb-6de2-11e5-af42-0673d9c9b5d6","name":"Franklin East Neighborhood","address":"4026 Clovercroft Rd.,Franklin,37067","lat":35.914558,"lng":-86.809646,"__v":0},
        {"_id":"56a9f11d5e7cad420da7d1f6","id":"3ea09ff9-6de3-11e5-af42-0673d9c9b5d6","name":"McKay's Mill Neighborhood","address":"1417 Chantilly Lane,Franklin,37067","lat":35.928858,"lng":-86.778752,"__v":0},
        {"_id":"56a9f11d5e7cad420da7d1f8","id":"a77aa2d6-6d22-11e5-af42-0673d9c9b5d6","name":"Westhaven Neighborhood","address":"467 Wiregrass Ln,Franklin,37064","lat":35.931138,"lng":-86.93293400000002,"__v":0},

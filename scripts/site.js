@@ -42,6 +42,7 @@ var village;
     map.addLayer(markers);
 }
     function addMarker(m) {
+      if (isNaN(m.lat) || isNaN(m.lng)) return;
 
         var marker = L.marker(
             new L.LatLng(m.lat, m.lng),
